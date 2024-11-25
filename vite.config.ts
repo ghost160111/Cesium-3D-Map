@@ -40,7 +40,6 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    outDir: "build",
     rollupOptions: {
       output: {
         entryFileNames: "js/[name].[hash].js",
