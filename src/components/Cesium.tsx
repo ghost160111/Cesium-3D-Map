@@ -1,4 +1,5 @@
 import { lazy, PureComponent, ReactNode, Suspense } from "react";
+import Preloader from "./Preloader";
 
 const Viewer = lazy(async () => {
   const module = await import("resium");
@@ -11,7 +12,7 @@ const Viewer = lazy(async () => {
 class CesiumWrap extends PureComponent {
   render(): ReactNode {
     return (
-      <Suspense fallback={<h1>Loading maps...</h1>}>
+      <Suspense fallback={<Preloader />}>
         <div className="cesium">
           <h1 className="main-title">Cesium powered with React Ecosystem</h1>
           <Viewer full />
