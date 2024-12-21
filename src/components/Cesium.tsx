@@ -14,7 +14,6 @@ class CesiumWrap extends PureComponent {
     return (
       <Suspense fallback={<Preloader />}>
         <div className="cesium">
-          <h1 className="main-title">Cesium powered with React Ecosystem</h1>
           <Viewer full />
         </div>
       </Suspense>
