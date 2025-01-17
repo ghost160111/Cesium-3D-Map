@@ -1,22 +1,12 @@
-import { lazy, PureComponent, ReactNode, Suspense } from "react";
-import Preloader from "./Preloader";
-
-const Viewer = lazy(async () => {
-  const module = await import("resium");
-  const Viewer = module.Viewer;
-  return {
-    default: Viewer,
-  };
-});
+import { PureComponent, ReactNode } from "react";
+import { Viewer } from "resium";
 
 class CesiumWrap extends PureComponent {
   render(): ReactNode {
     return (
-      <Suspense fallback={<Preloader />}>
-        <div className="cesium">
-          <Viewer full />
-        </div>
-      </Suspense>
+      <div className="cesium">
+        <Viewer full />
+      </div>
     );
   }
 }
