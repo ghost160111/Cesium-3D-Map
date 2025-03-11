@@ -1,11 +1,12 @@
-import { PureComponent, ReactNode } from "react";
 import "./Preloader.scss";
+import { PureComponent, ReactNode } from "react";
+import LoadingText from "./LoadingText";
 
 class Preloader extends PureComponent {
   render(): ReactNode {
     return (
       <div className="loader">
-        <h2>Loading maps</h2>
+        <LoadingText />
         <div className="spinner-loader" />
       </div>
     );
