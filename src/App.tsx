@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.scss";
 import Preloader from "components/Preloader";
 import { lazy, PureComponent, ReactNode, Suspense } from "react";
 
