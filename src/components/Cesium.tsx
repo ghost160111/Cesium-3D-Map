@@ -1,12 +1,28 @@
-import { PureComponent, ReactNode } from "react";
-import { Viewer } from "resium";
+import { PureComponent, RefObject, createRef } from "react";
+import Cesium from "cesium";
 
 class CesiumWrap extends PureComponent {
-  render(): ReactNode {
+  cesiumContainer: RefObject<HTMLDivElement> = createRef();
+  viewer;
+  
+  componentDidMount() {
+    this.viewer = new Cesium.Viewer(this.cesiumContainer, {
+      full: true,
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.viewer) {
+      this.viewer.destroy();
+    }
+  }
+
+  render() {
     return (
-      <div className="cesium">
-        <Viewer full />
-      </div>
+      <div
+        ref={this.cesiumContainer}
+        className="cesium"
+      />
     );
   }
 }
