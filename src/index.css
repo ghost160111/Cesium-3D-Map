@@ -1,3 +1,9 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .main-title {
   position: absolute;
   left: 50%;
@@ -24,4 +30,9 @@
 .cesium {
   display: block;
   animation: Cesium 700ms ease;
+}
+
+.cesium-wrap {
+  width: 100%;
+  height: 100dvh;
 }
