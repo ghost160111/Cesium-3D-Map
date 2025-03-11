@@ -1,11 +1,14 @@
 import CesiumWrap from "components/Cesium";
+import { PureComponent, ReactNode } from "react";
 
-function App() {
-  return (
-    <div className="cesium-wrap">
-      <CesiumWrap />
-    </div>
-  );
+class App extends PureComponent {
+  render(): ReactNode {
+    return (
+      <div className="cesium-wrap">
+        <CesiumWrap />
+      </div>
+    );
+  }
 }
 
 export default App;
