@@ -1,4 +1,4 @@
-import { PureComponent, RefObject, createRef } from "react";
+import { PureComponent, RefObject, createRef, ReactNode } from "react";
 import * as Cesium from "cesium";
 
 Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Yjc3ZS1jYTJkLTRkYWMtYmZlNy1kYzA4YjgyMTdiMjAiLCJpZCI6MjQ3MDY2LCJpYXQiOjE3Mjg1Mzk3NDZ9.-7JmcxLSYtut_Z4ZQKln0gB306vlLJZeiVMQSRbuJUk";
@@ -7,7 +7,7 @@ class CesiumWrap extends PureComponent {
   cesiumContainer: RefObject<HTMLDivElement> = createRef();
   viewer: Cesium.Viewer;
 
-  render() {
+  render(): ReactNode {
     return (
       <div
         ref={this.cesiumContainer}
@@ -16,11 +16,11 @@ class CesiumWrap extends PureComponent {
     );
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.setupViewer();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     if (this.viewer) {
       this.viewer.destroy();
     }
