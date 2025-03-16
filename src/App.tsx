@@ -5,6 +5,8 @@ import { lazy, PureComponent, ReactNode, Suspense } from "react";
 const CesiumWrap = lazy(() => import("components/Cesium"));
 
 class App extends PureComponent {
+  cesiumViewerBottom: HTMLElement;
+
   render(): ReactNode {
     return (
       <div className="cesium-wrap">
@@ -13,6 +15,13 @@ class App extends PureComponent {
         </Suspense>
       </div>
     );
+  }
+
+  componentDidMount(): void {
+    this.cesiumViewerBottom = document.querySelector(".cesium-viewer-bottom");
+    if (this.cesiumViewerBottom) {
+      this.cesiumViewerBottom.remove();
+    }
   }
 }
 
