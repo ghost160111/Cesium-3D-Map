@@ -7,7 +7,7 @@ Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Y
 class CesiumWrap extends PureComponent {
   cesiumViewerBottom: HTMLElement;
   cesiumContainer: RefObject<HTMLDivElement> = createRef();
-  viewer: Viewer;
+  viewer: Viewer | null;
 
   render(): ReactNode {
     return (
