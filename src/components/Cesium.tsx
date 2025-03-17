@@ -1,13 +1,13 @@
 import { PureComponent, RefObject, createRef, ReactNode } from "react";
-import { Viewer, Ion, Terrain, createOsmBuildingsAsync } from "cesium";
+import * as Cesium from "cesium";
 import Attribution from "./Attribution";
 
-Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Yjc3ZS1jYTJkLTRkYWMtYmZlNy1kYzA4YjgyMTdiMjAiLCJpZCI6MjQ3MDY2LCJpYXQiOjE3Mjg1Mzk3NDZ9.-7JmcxLSYtut_Z4ZQKln0gB306vlLJZeiVMQSRbuJUk";
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Yjc3ZS1jYTJkLTRkYWMtYmZlNy1kYzA4YjgyMTdiMjAiLCJpZCI6MjQ3MDY2LCJpYXQiOjE3Mjg1Mzk3NDZ9.-7JmcxLSYtut_Z4ZQKln0gB306vlLJZeiVMQSRbuJUk";
 
 class CesiumWrap extends PureComponent {
   cesiumViewerBottom: HTMLElement;
   cesiumContainer: RefObject<HTMLDivElement> = createRef();
-  viewer: Viewer | null;
+  viewer: Cesium.Viewer | null;
 
   render(): ReactNode {
     return (
@@ -37,13 +37,14 @@ class CesiumWrap extends PureComponent {
   }
 
   async setupViewer(): Promise<void> {
-    this.viewer = new Viewer(this.cesiumContainer.current, {
-      terrain: Terrain.fromWorldTerrain(),
+    this.viewer = new Cesium.Viewer(this.cesiumContainer.current, {
+      terrain: Cesium.Terrain.fromWorldTerrain(),
     });
 
     this.viewer.fullscreenButton.destroy();
+    this.viewer.animation.applyThemeChanges();
 
-    const buildingTileset = await createOsmBuildingsAsync();
+    const buildingTileset = await Cesium.createOsmBuildingsAsync();
     this.viewer.scene.primitives.add(buildingTileset);
   }
 }
