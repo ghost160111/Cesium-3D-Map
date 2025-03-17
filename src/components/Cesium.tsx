@@ -1,13 +1,13 @@
-import "./Cesium.scss";
 import { PureComponent, RefObject, createRef, ReactNode } from "react";
-import * as Cesium from "cesium";
+import { Viewer, Ion, Terrain, createOsmBuildingsAsync } from "cesium";
+import Attribution from "./Attribution";
 
-Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Yjc3ZS1jYTJkLTRkYWMtYmZlNy1kYzA4YjgyMTdiMjAiLCJpZCI6MjQ3MDY2LCJpYXQiOjE3Mjg1Mzk3NDZ9.-7JmcxLSYtut_Z4ZQKln0gB306vlLJZeiVMQSRbuJUk";
+Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjk4Yjc3ZS1jYTJkLTRkYWMtYmZlNy1kYzA4YjgyMTdiMjAiLCJpZCI6MjQ3MDY2LCJpYXQiOjE3Mjg1Mzk3NDZ9.-7JmcxLSYtut_Z4ZQKln0gB306vlLJZeiVMQSRbuJUk";
 
 class CesiumWrap extends PureComponent {
   cesiumViewerBottom: HTMLElement;
   cesiumContainer: RefObject<HTMLDivElement> = createRef();
-  viewer: Cesium.Viewer;
+  viewer: Viewer;
 
   render(): ReactNode {
     return (
@@ -16,9 +16,7 @@ class CesiumWrap extends PureComponent {
           ref={this.cesiumContainer}
           className="cesium-wrap"
         />
-        <div className="attribution-devcybercode">
-          <span>Powered by <a href="https://devcybercode.com" target="_blank">devcybercode.com</a></span>
-        </div>
+        <Attribution />
       </>
     );
   }
@@ -39,13 +37,13 @@ class CesiumWrap extends PureComponent {
   }
 
   async setupViewer(): Promise<void> {
-    this.viewer = new Cesium.Viewer(this.cesiumContainer.current, {
-      terrain: Cesium.Terrain.fromWorldTerrain(),
+    this.viewer = new Viewer(this.cesiumContainer.current, {
+      terrain: Terrain.fromWorldTerrain(),
     });
 
     this.viewer.fullscreenButton.destroy();
 
-    const buildingTileset = await Cesium.createOsmBuildingsAsync();
+    const buildingTileset = await createOsmBuildingsAsync();
     this.viewer.scene.primitives.add(buildingTileset);
   }
 }
