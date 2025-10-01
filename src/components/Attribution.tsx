@@ -5,7 +5,7 @@ class Attribution extends PureComponent {
   render(): ReactNode {
     return (
       <div className="attribution-devcybercode">
-        <span>Powered by <a href="https://devcybercode.com" target="_blank">devcybercode.com</a></span>
+        <span>Powered by <a href="https://enzora.uz target="_blank">Enzora.uz</a></span>
       </div>
     );
   }
